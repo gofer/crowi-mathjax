@@ -99,10 +99,12 @@ export default class MathJaxFormula {
  
     while (pos < markdown.length) {
       if (markdown[pos] == '`' && not_escaped()) {
-        if (flag_in_code && has_expected_code_quote(code_quote_num)) { // コード内
+        if (flag_in_code) { // コード内
+          if (has_expected_code_quote(code_quote_num)) {
             pos += code_quote_num;
 
             unset_code_flag();
+          }
         } else {
           var num_of_quote = count_code_quote();
           pos += num_of_quote;
